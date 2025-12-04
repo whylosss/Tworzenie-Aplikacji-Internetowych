@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmedia</title>
+</head>
+<body>
+
+    <button id="mobile-menu" style="display:none;">☰ Menu Mobilne</button>
+
+    <nav id="classic-menu">
+        <a href="#">Strona Główna</a> | 
+        <a href="#">Usługi</a> | 
+        <a href="#">Kontakt</a>
+    </nav>
+
+    <p>Zmień szerokość okna przeglądarki, aby przełączać menu.</p>
+
+<script>
+
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+
+    const mobileMenu = document.getElementById("mobile-menu");
+    const classicMenu = document.getElementById("classic-menu");
+
+
+    function handleMenuChange(e) 
+    {
+        if (e.matches) 
+        {
+            mobileMenu.style.display = "block";
+            classicMenu.style.display = "none";
+        } 
+        else 
+        {
+            mobileMenu.style.display = "none";
+            classicMenu.style.display = "block";
+        }
+    }
+    mediaQuery.addEventListener("change", handleMenuChange);
+    handleMenuChange(mediaQuery);
+    handleScreenChange(mql);
+</script>
+</body>
+</html>
