@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Okienka Dialogowe 2</title>
+</head>
+<body>
+
+<script>
+    let product = prompt(
+    "Jaki produkt chcesz zamówić? (Wprowadź: Laptop lub Mysz)",
+    "Laptop"
+    );
+
+    if (product === null || product.trim() === "") 
+    {
+        alert("Produkt nieznany lub anulowano. Proces zamawiania przerwany.");
+    } 
+    else 
+    {
+        product = product.trim().toLowerCase();
+
+        if (product === "laptop") 
+        {
+            let confirmLaptop = confirm("Czy na pewno chcesz zamówić Laptopa za 4500 PLN?");
+            if (confirmLaptop) 
+            {
+                alert("Zamówienie produktu Laptop zostało złożone. Dziękujemy!");
+            } 
+            else 
+            {
+                alert("Zamówienie anulowane przez użytkownika.");
+            }
+        }
+        else if (product === "mysz") 
+        {
+            let confirmMouse = confirm("Czy na pewno chcesz zamówić Mysz za 150 PLN?");
+            if (confirmMouse) 
+            {
+                alert("Zamówienie produktu Mysz zostało złożone. Dziękujemy!");
+            } 
+            else 
+            {
+                alert("Zamówienie anulowane przez użytkownika.");
+            }
+        } 
+        else 
+        {
+            alert("Produkt nieznany lub anulowano. Proces zamawiania przerwany.");
+        }
+    }
+
+</script>
+
+</body>
+</html>

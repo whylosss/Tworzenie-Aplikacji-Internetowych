@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Okienka Dialogowe 1</title>
+</head>
+<body>
+
+<script>
+    const kod = prompt("Podaj tajny kod dostępu:");
+
+    if (kod === null || kod === "") 
+    {
+        alert("Odmowa dostępu: Brak danych.");
+    } 
+    else if (kod === "JS2024") 
+    {
+        alert("Dostęp przyznany. Witaj!");
+    } 
+    else 
+    {
+        alert("Kod nieprawidłowy. Odmowa dostępu.");
+    }
+
+</script>
+
+</body>
+</html>
