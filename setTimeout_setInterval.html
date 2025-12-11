@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie JavaScript: Stoper i Wiadomość Zegarowa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .sekcja {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        #stoper {
+            font-size: 3em;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #28a745; /* Zielony kolor dla stopera */
+            font-family: 'Courier New', monospace;
+        }
+
+        #wiadomosc {
+            font-size: 1.2em;
+            text-align: center;
+            padding: 10px;
+            background-color: #ffc107; /* Żółte tło dla wiadomości */
+            border-radius: 4px;
+            font-style: italic;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        #przyciskStart {
+            background-color: #007bff;
+            color: white;
+        }
+
+        #przyciskStart:hover {
+            background-color: #0056b3;
+        }
+
+        #przyciskReset {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        #przyciskReset:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Stoper i Zegar Wiadomości (Zadanie JS)</h1>
+
+    <div class="sekcja">
+        <h2>⏱️ Stoper</h2>
+        <p>Twoim zadaniem jest dynamiczne zarządzanie poniższym licznikiem za pomocą funkcji `setInterval()` oraz `clearInterval()`.</p>
+        <div id="stoper">0:000</div>
+        <div>
+            <button id="przyciskStart">Start Stopera</button>
+            <button id="przyciskReset">Reset Stopera</button>
+        </div>
+    </div>
+
+    <div class="sekcja">
+        <h2>📢 Wiadomości Cykliczne</h2>
+        <p>Wyświetlaj w tym polu cykliczne wiadomości z tablicy, zmieniające się co 3 sekundy, używając `setInterval()`.</p>
+        <div id="wiadomosc">Ładowanie wiadomości...</div>
+    </div>
+
+    <div class="sekcja">
+        <h2>📝 Wymagania JavaScript</h2>
+        
+        <h3>1. Stoper (setInterval)</h3>
+        <ul>
+            <li>Po kliknięciu przycisku o id <b>`#przyciskStart`</b> uruchom stoper, który co <b>10 milisekund</b> aktualizuje zawartość elementu <b>`#stoper`</b>.</li>
+            <li>Wartość wyświetlana powinna być sformatowana jako <b>sekundy:milisekundy</b> (np. <code>1:500</code>).</li>
+            <li>Przycisk <b>`#przyciskStart`</b> musi służyć jako przełącznik:
+                <ul>
+                    <li>Start: Zmień tekst na "Stop Stoper".</li>
+                    <li>Stop: Zmień tekst na "Wznów Stoper".</li>
+                </ul>
+            </li>
+            <li>Przycisk o id <b>`#przyciskReset`</b> powinien zerować wartość stopera do <code>0:000</code>.</li>
+        </ul>
+
+        <h3>2. Cykliczne Wiadomości</h3>
+        <ul>
+            <li>Utwórz tablicę z co najmniej <b>3</b> różnymi tekstami.</li>
+            <li>Skonfiguruj interwał, który co <b>3 sekundy</b> będzie zmieniał tekst w elemencie <b>`#wiadomosc`</b> na kolejną wiadomość z tablicy.</li>
+            <li>Po wyświetleniu ostatniej wiadomości, cykl powinien zacząć się od początku.</li>
+        </ul>
+
+        <h3>3. Wiadomość Jednorazowa (setTimeout)</h3>
+        <ul>
+            <li>Zaraz po załadowaniu skryptu, użyj funkcji <b>`setTimeout()`</b>, aby po <b>5 sekundach</b> wyświetlić w konsoli (<code>console.log</code>) tekst: <code>"Minęło 5 sekund od startu strony."</code> (Ta wiadomość ma się pojawić tylko raz).</li>
+        </ul>
+    </div>
+
+    <script>
+
+        const stoperElement = document.getElementById('stoper');
+        const przyciskStart = document.getElementById('przyciskStart');
+        const przyciskReset = document.getElementById('przyciskReset');
+
+        let interwalStopera = null;
+        let czasMs = 0;
+
+        przyciskStart.addEventListener('click', () => {
+            if (interwalStopera) {
+                clearInterval(interwalStopera);
+                interwalStopera = null;
+                przyciskStart.textContent = 'Wznów Stoper';
+            } else {
+                interwalStopera = setInterval(() => {
+                    czasMs += 10;
+                    const sekundy = Math.floor(czasMs / 1000);
+                    const milisekundy = (czasMs % 1000).toString().padStart(3, '0');
+                    stoperElement.textContent = `${sekundy}:${milisekundy}`;
+                }, 10);
+                przyciskStart.textContent = 'Stop Stoper';
+            }
+        });
+
+        przyciskReset.addEventListener('click', () => {
+            clearInterval(interwalStopera);
+            interwalStopera = null;
+            czasMs = 0;
+            stoperElement.textContent = '0:000';
+            przyciskStart.textContent = 'Start Stopera';
+        });
+
+        const wiadomoscElement = document.getElementById('wiadomosc');
+        const wiadomosci = [
+            "Wiadomość #1: Im sigma",
+            "Wiadomość #2: Malysz sigma.",
+            "Wiadomość #3: Im sigma",
+            "Wiadomość #4: Malysz sigma."
+        ];
+
+        let indeksWiadomosci = 0;
+
+        setInterval(() => {
+            wiadomoscElement.textContent = wiadomosci[indeksWiadomosci];
+            indeksWiadomosci = (indeksWiadomosci + 1) % wiadomosci.length;
+        }, 3000);
+        
+        wiadomoscElement.textContent = wiadomosci[0];
+
+        setTimeout(() => {
+            console.log("Minęło 5 sekund od startu strony.");
+        }, 5000);
+
+    </script>
+
+</body>
+</html>
