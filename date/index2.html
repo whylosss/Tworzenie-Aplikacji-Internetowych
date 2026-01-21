@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadanie data 2</title>
+</head>
+<body>
+
+<p id="wynik"></p>
+
+<script>
+    const teraz = new Date();
+    const godzina = teraz.getHours();
+
+    let tekst = "";
+    if (godzina >= 6 && godzina < 18) 
+    {
+        tekst = "Dzień dobry!";
+    } 
+    else 
+    {
+        tekst = "Dobry wieczór!";
+    }
+
+    const miesiace = [
+        "stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca",
+        "lipca", "sierpnia", "września", "października", "listopada", "grudnia"
+    ];
+
+    const dzien = teraz.getDate();
+    const miesiac = miesiace[teraz.getMonth()];
+    const rok = teraz.getFullYear();
+
+    tekst += "<br>" + dzien + " " + miesiac + " " + rok;
+
+    document.getElementById("wynik").innerHTML = tekst;
+</script>
+
+
+</body>
+</html>
