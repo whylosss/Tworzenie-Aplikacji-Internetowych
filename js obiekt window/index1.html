@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obiekt Window zadanie 1</title>
+</head>
+<body>
+
+<button id="spr" onclick="sprawdz()">button</button>
+
+<script>
+    const button = document.getElementById('spr');
+    const szerokosc = window.innerWidth;
+    const wysokosc = window.innerHeight;
+    function sprawdz()
+    {
+        if(window.innerWidth <= 800)
+        {
+            alert("Używasz wersji mobilnej lub małego okna");
+        }
+        else{
+            alert("asd");
+        }
+    }
+</script>
+
+</body>
+</html>
