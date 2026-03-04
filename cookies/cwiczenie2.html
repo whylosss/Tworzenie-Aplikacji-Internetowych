@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ćwiczenie 2</title>
+</head>
+<body>
+
+    <h2>Licznik odwiedzin w tej sesji:</h2>
+    <p id="counter"></p>
+
+    <script>
+        let count = sessionStorage.getItem("licznik");
+
+        if (!count) 
+        {
+            count = 0;
+        }
+
+        count++;
+
+        sessionStorage.setItem("licznik", count);
+
+        document.getElementById("counter").textContent = count;
+    </script>
+
+</body>
+</html>

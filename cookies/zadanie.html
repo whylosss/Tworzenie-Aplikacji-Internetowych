@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie</title>
+    <style>
+        body
+        {
+            font-family: Arial, sans-serif;
+        }
+
+        .panel 
+        {
+            background: #fff;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin: 30px auto;
+        }
+
+        label 
+        {
+            font-weight: bold;
+        }
+
+        .row 
+        {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="panel">
+    <h2>Personalizator Wyglądu</h2>
+
+    <div class="row">
+        <label>Kolor tła:</label><br>
+        <input type="color" id="bgColor" onchange="zmienKolor()">
+    </div>
+
+    <div class="row">
+        <label>Rozmiar czcionki:</label><br>
+        <input type="range" id="fontSize" min="12" max="40" value="16" oninput="zmienCzcionke()">
+        <span id="fontValue">16px</span>
+    </div>
+
+    <button onclick="resetuj()">Przywróć domyślne</button>
+</div>
+
+<script>
+    window.onload = function() 
+    {
+        const savedColor = localStorage.getItem("bgColor");
+        const savedFont = localStorage.getItem("fontSize");
+
+        if (savedColor) 
+        {
+            document.body.style.backgroundColor = savedColor;
+            document.getElementById("bgColor").value = savedColor;
+        }
+
+        if (savedFont) 
+        {
+            document.body.style.fontSize = savedFont + "px";
+            document.getElementById("fontSize").value = savedFont;
+            document.getElementById("fontValue").textContent = savedFont + "px";
+        }
+    }
+
+    function zmienKolor() 
+    {
+        const color = document.getElementById("bgColor").value;
+        document.body.style.backgroundColor = color;
+        localStorage.setItem("bgColor", color);
+    }
+
+    function zmienCzcionke() 
+    {
+        const size = document.getElementById("fontSize").value;
+        document.body.style.fontSize = size + "px";
+        document.getElementById("fontValue").textContent = size + "px";
+        localStorage.setItem("fontSize", size);
+    }
+
+    function resetuj() 
+    {
+        localStorage.removeItem("bgColor");
+        localStorage.removeItem("fontSize");
+
+        document.body.style.backgroundColor = "#ffffff";
+        document.body.style.fontSize = "16px";
+
+        document.getElementById("bgColor").value = "#ffffff";
+        document.getElementById("fontSize").value = 16;
+        document.getElementById("fontValue").textContent = "16px";
+    }
+</script>
+
+</body>
+</html>

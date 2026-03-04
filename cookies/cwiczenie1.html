@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ćwiczenie 1</title>
+</head>
+<body>
+
+    <label for="name">Imię:</label>
+    <input type="text" id="name">
+    <button onclick="zapiszImie()">Zapisz</button>
+
+    <script>
+        const savedName = localStorage.getItem("imie");
+        if (savedName)
+        {
+            document.getElementById("name").value = savedName;
+        }
+
+        function zapiszImie() 
+        {
+            const name = document.getElementById("name").value;
+            localStorage.setItem("imie", name);
+        }
+    </script>
+
+</body>
+</html>
