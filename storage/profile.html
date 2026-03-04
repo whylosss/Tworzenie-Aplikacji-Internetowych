@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil</title>
+</head>
+<body>
+
+<h1 id="welcomeMessage">Witaj Nieznajomy!</h1>
+<a href="index.html">Wróc i zmień swoje imie</a>
+
+<script>
+window.onload = function() 
+{
+    const name = localStorage.getItem('user_name');
+
+    if (name) 
+    {
+        document.getElementById('welcomeMessage').innerText = "Witaj, " + name + "!";
+    }
+};
+</script>
+
+</body>
+</html>

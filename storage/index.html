@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Główna</title>
+</head>
+<body>
+
+<h2>Podaj swoje imię</h2>
+
+<input type="text" id="userName" placeholder="Wpisz imię">
+<button onclick="saveAndGo()">Zapisz i Przejdź</button>
+
+<script>
+function saveAndGo() 
+{
+    const name = document.getElementById('userName').value.trim();
+
+    if (name) {
+        localStorage.setItem('user_name', name);
+        sessionStorage.setItem('user_name', name);
+        window.location.href = "profile.html";
+    } 
+    else 
+    {
+        alert("Wpisz imię przed przejściem dalej!");
+    }
+}
+sessionStorage.setItem("temp_code", "12345");
+localStorage.setItem("isLoggedIn", "true");
+alert(sessionStorage.getItem("temp_code"));
+</script>
+
+</body>
+</html>
