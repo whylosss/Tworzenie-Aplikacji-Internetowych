@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Walidator kodu pocztowego</title>
+</head>
+<body>
+
+  <h2>Walidator polskiego kodu pocztowego</h2>
+
+  <input type="text" id="zip">
+  <button onclick="checkZip()">Sprawdź</button>
+
+  <div id="result"></div>
+
+<script>
+  function validatePLZip(code) 
+  {
+    const regex = /^\d{2}-\d{3}/;
+    return regex.test(code);
+  }
+
+  function checkZip() 
+  {
+    const value = document.getElementById("zip").value;
+    const result = document.getElementById("result");
+
+    if (validatePLZip(value))
+    {
+      result.style.color = "green";
+      result.textContent = "Poprawny kod pocztowy";
+    } 
+    else 
+    {
+      result.style.color = "red";
+      result.textContent = "Niepoprawny format kodu pocztowego";
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>System ekstrakcji danych z logów</title>
+</head>
+<body>
+<script>
+    const logs = "ERROR [2026-03-18] User: admin - Connection failed; INFO [2026-03-18] User: guest - Login success; ERROR [2026-03-19] User: root - Disk full;";
+
+    const dates = logs.match(/\d{4}-\d{2}-\d{2}/g);
+    console.log("Daty:", dates);
+
+    const users = [...logs.matchAll(/User:\s(.*?)\s-/g)].map(match => match[1]);
+    console.log("Użytkownicy:", users);
+
+    const errorCount = (logs.match(/ERROR/g) || []).length;
+    console.log("Liczba ERROR:", errorCount);
+
+    const entries = [...logs.matchAll(/(ERROR|INFO)\s\[(.*?)\]\sUser:\s(.*?)\s-/g)]
+        .map(match => ({
+            type: match[1],
+            user: match[3]
+        }));
+
+    console.log("Tablica obiektów:", entries);
+</script>
+
+</body>
+</html>

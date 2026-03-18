@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ukrywanie danych</title>
+</head>
+<body>
+
+<script>
+    const text = "Mój numer to 500-600-700, a szefa 888-999-000";
+
+    const hidden = text.replace(/\d/g, "X");
+
+    console.log("Oryginał:", text);
+    console.log("Po ukryciu:", hidden);
+</script>
+
+</body>
+</html>
