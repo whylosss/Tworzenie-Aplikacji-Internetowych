@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona 2</title>
+</head>
+<body>
+    <h1 id="welcome-msg"></h1>
+
+    <button id="back-btn">Wróć</button>
+
+    <script>
+        const userName = sessionStorage.getItem('userName');
+
+        if (userName) 
+        {
+            document.getElementById('welcome-msg').innerText =
+                "Witaj, " + userName + "! Miło Cię widzieć w sesji.";
+        } 
+        else 
+        {
+            document.getElementById('welcome-msg').innerText =
+                "Nie znamy się!";
+        }
+
+        document.getElementById('back-btn').addEventListener('click', () => {
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>

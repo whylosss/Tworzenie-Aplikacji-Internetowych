@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie</title>
+</head>
+<body>
+    <h1>System Personalizacji</h1>
+
+    <div id="content"></div>
+
+    <script>
+        const savedName = sessionStorage.getItem('userName');
+        const contentDiv = document.getElementById('content');
+
+        if (savedName) 
+        {
+            contentDiv.innerHTML = `
+                <p>Sesja aktywna dla: <strong>${savedName}</strong></p>
+                <button id="go-next">Przejdź dalej</button>
+            `;
+
+            document.getElementById('go-next').addEventListener('click', () => {
+                window.location.href = "strona2.html";
+            });
+
+        } 
+        else 
+        {
+            contentDiv.innerHTML = `
+                <label>Podaj swoje imię:</label><br>
+                <input type="text" id="name-input" placeholder="Wpisz imię"><br><br>
+                <button id="next-btn">Dalej</button>
+            `;
+
+            document.getElementById('next-btn').addEventListener('click', () => {
+                const name = document.getElementById('name-input').value;
+
+                if (name.trim() !== "") 
+                {
+                    sessionStorage.setItem('userName', name);
+                    window.location.href = "strona2.html";
+                } 
+                else 
+                {
+                    alert("Wpisz imię przed przejściem dalej!");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
