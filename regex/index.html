@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Walidacja</title>
+</head>
+<body>
+
+<h2>Formularz</h2>
+
+<label>Hasło:</label><br>
+<input type="text" id="password"><br>
+<button onclick="checkPassword()">Sprawdź hasło</button>
+<p id="passResult"></p>
+
+<hr>
+
+<label>Telefon (tekst):</label><br>
+<input type="text" id="phone"><br>
+<button onclick="checkPhone()">Znajdź numery</button>
+<p id="phoneResult"></p>
+
+<hr>
+
+<label>Tekst:</label><br>
+<input type="text" id="text"><br>
+<button onclick="checkCensor()">Cenzuruj</button>
+<p id="censorResult"></p>
+
+<hr>
+
+<label>Log:</label><br>
+<input type="text" id="log"><br>
+<button onclick="checkLog()">Parsuj log</button>
+<p id="logResult"></p>
+
+
+<script>
+function validatePassword(password) {
+  if (password.length < 8) return false;
+
+  let hasSmall = /[a-z]/.test(password);
+  let hasBig = /[A-Z]/.test(password);
+  let hasNumber = /[0-9]/.test(password);
+  let hasSpecial = /[@$!%*?&]/.test(password);
+
+  return hasSmall && hasBig && hasNumber && hasSpecial;
+}
+
+function checkPassword() {
+  let password = document.getElementById("password").value;
+  let result = validatePassword(password);
+
+  document.getElementById("passResult").innerText =
+    result ? "Hasło OK ✅" : "Hasło NIEPOPRAWNE ❌";
+}
+
+function detectPhone(text) {
+  let regex = /\d{9}|\d{3}-\d{3}-\d{3}|\+48 \d{3} \d{3} \d{3}/g;
+  return text.match(regex);
+}
+
+function checkPhone() {
+  let text = document.getElementById("phone").value;
+  let result = detectPhone(text);
+
+  document.getElementById("phoneResult").innerText =
+    result ? result.join(", ") : "Brak numerów";
+}
+
+function censor(text) {
+  return text.replace(/regex/gi, "[ZAKRYTO]");
+}
+
+function checkCensor() {
+  let text = document.getElementById("text").value;
+  let result = censor(text);
+
+  document.getElementById("censorResult").innerText = result;
+}
+
+function parseLog(log) {
+  let regex = /^(\w+) \[(\d{4}-\d{2}-\d{2})\]/;
+  let wynik = log.match(regex);
+
+  if (wynik) {
+    return "Typ: " + wynik[1] + ", Data: " + wynik[2];
+  }
+
+  return "Niepoprawny log";
+}
+
+function checkLog() {
+  let log = document.getElementById("log").value;
+  let result = parseLog(log);
+
+  document.getElementById("logResult").innerText = result;
+}
+</script>
+
+</body>
+</html>
