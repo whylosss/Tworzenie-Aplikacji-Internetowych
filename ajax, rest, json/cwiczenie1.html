@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ćwiczenie JSON</title>
+</head>
+<body>
+
+    <h2>Konwerter Książek na JSON</h2>
+    
+    <button id="convert-btn">Konwertuj tablicę na JSON</button>
+
+    <span class="label">Obiekt w JavaScript (Tablica):</span>
+    <pre id="js-object">Kliknij przycisk, aby zobaczyć dane...</pre>
+
+    <span class="label">Wynik w formacie JSON (String):</span>
+    <pre id="json-output">Czekam na konwersję...</pre>
+
+    <script>
+        const books = 
+        [
+            { title: "Wiedźmin: Ostatnie życzenie", author: "Andrzej Sapkowski" },
+            { title: "Hrabia Monte Christo", author: "Aleksander Dumas" },
+            { title: "Rok 1984", author: "George Orwell" }
+        ];
+
+        const btn = document.getElementById('convert-btn');
+        const jsDisplay = document.getElementById('js-object');
+        const jsonDisplay = document.getElementById('json-output');
+
+        btn.addEventListener('click', () => 
+        {
+            console.log("Tablica JS:", books);
+            jsDisplay.textContent = "Tablica z " + books.length + " książkami (zobacz w konsoli F12)";
+
+            const booksJSON = JSON.stringify(books, null, 2);
+
+            console.log("Wygenerowany JSON:", booksJSON);
+            jsonDisplay.textContent = booksJSON;
+        });
+    </script>
+
+</body>
+</html>

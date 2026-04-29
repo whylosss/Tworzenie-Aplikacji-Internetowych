@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Losowy Piesek</title>
+</head>
+<body>
+
+    <button id="get-dog">Pokaż losowego psa</button>
+    <div id="dog-container">
+    </div>
+
+    <script>
+        const btn = document.getElementById('get-dog');
+        const container = document.getElementById('dog-container');
+
+        btn.addEventListener('click', () => 
+        {
+            fetch('https://dog.ceo/api/breeds/image/random')
+                .then(response => 
+                {
+                    if (!response.ok) throw new Error("Błąd pobierania");
+                    return response.json();
+                })
+                .then(data => 
+                {
+                    container.innerHTML = `<img src="${data.message}" alt="Losowy pies">`;
+                })
+                .catch(error => 
+                {
+                    container.innerHTML = "Nie udało się załadować zdjęcia.";
+                    console.error(error);
+                });
+        });
+    </script>
+
+</body>
+</html>
